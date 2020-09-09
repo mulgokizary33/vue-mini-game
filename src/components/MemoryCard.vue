@@ -134,7 +134,13 @@ export default {
       this.memoryCards.forEach((card) => {
         this.$set(card, 'isFlipped', true)
       })
-      this.$message('5秒后开始')
+      setTimeout(() => {
+        this.$message({
+          showClose: true,
+          message: '5秒后开始',
+          duration: 5000
+        })
+      }, 0)
       setTimeout(() => {
         this.memoryCards.forEach((card) => {
           this.$set(card, 'isFlipped', false)

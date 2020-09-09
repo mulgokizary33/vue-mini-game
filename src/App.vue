@@ -1,16 +1,12 @@
 <template>
   <div id="app">
-    <memory-card></memory-card>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import MemoryCard from './components/MemoryCard'
 export default {
-  name: 'App',
-  components: {
-    MemoryCard
-  }
+  name: 'App'
 }
 </script>
 
