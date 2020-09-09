@@ -30,6 +30,7 @@ export default {
   name: 'MemoryCard',
   data () {
     return {
+      interval: null,
       loading: false,
       memoryCards: [],
       flippedCards: [],
@@ -130,6 +131,7 @@ export default {
       }
     },
     clickStart () {
+      this.clickReset()
       this.loading = true
       this.memoryCards.forEach((card) => {
         this.$set(card, 'isFlipped', true)
@@ -177,6 +179,9 @@ export default {
       this.totalTime.seconds = 0
     }
   },
+  created () {
+    this.initMemoryCards()
+  },
   computed: {
     sec () {
       if (this.totalTime.seconds < 10) {
@@ -190,20 +195,6 @@ export default {
       }
       return this.totalTime.minutes
     }
-  },
-  created () {
-    this.cards.forEach((card) => {
-      this.$set(card, 'isFlipped', false)
-      this.$set(card, 'isMatched', false)
-    })
-    const cardCopy = this.cards.map(item => ({
-      id: item.id + '_copy',
-      name: item.name,
-      img: item.img,
-      isFlipped: item.isFlipped,
-      isMatched: item.isMatched
-    }))
-    this.memoryCards = this._.shuffle(this.memoryCards.concat(this._.cloneDeep(this.cards), this._.cloneDeep(cardCopy)))
   }
 }
 </script>
